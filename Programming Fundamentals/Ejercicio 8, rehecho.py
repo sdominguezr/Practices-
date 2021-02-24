@@ -91,11 +91,11 @@ def opt_1(full_list, i):
         return "The name introduced is not defined."
 
 
-# def get_index_same(full_list,i , igual, header):
-i = 1
+
 igual = 5
 list_values = []
 all_dict = dict(zip(header[1:], full_list[1:]))
+print(all_dict)
 def opt_2(full_list, i ):
     for index in range(0, len(full_list[i])):
         if full_list[i][index] == str(igual):
@@ -108,11 +108,43 @@ def opt_2(full_list, i ):
                 except IndexError:
                     break
                     a = 0
+patient_id = 1 #int(input("Introduce a patient id: "))
+#def opt_3(all_dict, patient_id):
+index = 0
+while index <= len(header):
+    try:
+        index += 1
+        key = header[index]
+        info = ("The value for the variable: " + header[index] , all_dict[key][patient_id - 1])
+        print(info)#return(info)
+    except IndexError:
+        break
+    except ValueError:
+        continue
 
-print(opt_2(full_list, i))
+patient_id_4 = 1#input("Introude a patient id: ")
+number_variable = 1 #input("Introduce the number for the variable you want to change: ")
+new_variable = 1  #input("Intoduce a new variable: ")
+#def opt_4(full_list, number_variable, new_variable, patien_id_4):
+index = 0
+values_list = full_list[index]
+values_list[patient_id - 1: patient_id] = [new_variable]
+print("The information is now : " )
+while index <= len(header):
+    try:
+        index += 1
+        info = "The value for the variable: " + header[index] + full_list[index][patient_id_4]
+        print(info)
+    except IndexError:
+        break
+
+#def opt_5(all_dict):
+new_file_name = input("Introduce a name for the new file: ")
+new_file = (new_file_name, "w")
+index_list = 0
+while index_list <= len(full_list[1]):
+    written = new_file.write()
 
 
-
-
-
-
+#all_dict.update([(header[index], new_variable)])
+#print(opt_3(all_dict, patient_id))
