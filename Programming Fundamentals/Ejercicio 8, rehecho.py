@@ -1,6 +1,4 @@
 import statistics
-
-
 def menu():
     main_menu = (" Main menu:" + "\n"
     "1.- Calculate statistics" + "\n"
@@ -10,11 +8,7 @@ def menu():
     "5.- Clone the file" + "\n"
     "6.- Exit")
     return main_menu
-
-
 print(menu())
-
-
 def data():
     try:
         with open("Pima_tr.csv", "r") as f:
@@ -31,11 +25,7 @@ def data():
         return header, full_list
     except FileNotFoundError:
         return "There is no file named in that form."
-
-
 header, full_list = data()
-
-
 # print(full_list)
 def menu_var():
     menu = (" Menu of varibales:" + "\n"
@@ -48,8 +38,6 @@ def menu_var():
              "7.- Age: age in years" + "\n"
              "8.- Type: 'yes' or 'no' for diabetic according to WHO criteria")
     return menu
-
-
 def opt_1(full_list, i):
     high = 0
     low = 10 ** 10
@@ -89,9 +77,6 @@ def opt_1(full_list, i):
 
     except NameError:
         return "The name introduced is not defined."
-
-
-
 igual = 5
 list_values = []
 all_dict = dict(zip(header[1:], full_list[1:]))
@@ -121,7 +106,6 @@ while index <= len(header):
         break
     except ValueError:
         continue
-
 patient_id_4 = 1#input("Introude a patient id: ")
 number_variable = 1 #input("Introduce the number for the variable you want to change: ")
 new_variable = 1  #input("Intoduce a new variable: ")
@@ -137,7 +121,6 @@ while index <= len(header):
         print(info)
     except IndexError:
         break
-
 def opt_5(all_dict):
     new_file_name =  "a2" #input("Introduce a name for the new file: ")
     new_file = open(new_file_name, "w")
@@ -152,12 +135,9 @@ def opt_5(all_dict):
             written = new_file.write("\n")
             i = 0
             index_list += 1
-            continue
-
+            if index_list > len(full_list[i]):
+                break
+            else:
+                continue
             new_file.close()
         return "Copy"
-
-
-
-#all_dict.update([(header[index], new_variable)])
-#print(opt_3(all_dict, patient_id))
