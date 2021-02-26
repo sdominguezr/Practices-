@@ -138,12 +138,25 @@ while index <= len(header):
     except IndexError:
         break
 
-#def opt_5(all_dict):
-new_file_name = input("Introduce a name for the new file: ")
-new_file = (new_file_name, "w")
-index_list = 0
-while index_list <= len(full_list[1]):
-    written = new_file.write()
+def opt_5(all_dict):
+    new_file_name =  "a2" #input("Introduce a name for the new file: ")
+    new_file = open(new_file_name, "w")
+    index_list = 0
+    i = 0
+    ok_i = False
+    while not ok_i:
+        try:
+            written = new_file.write(str(full_list[i][index_list]) + ", ")
+            i += 1
+        except IndexError:
+            written = new_file.write("\n")
+            i = 0
+            index_list += 1
+            continue
+
+            new_file.close()
+        return "Copy"
+
 
 
 #all_dict.update([(header[index], new_variable)])
