@@ -93,34 +93,29 @@ def opt_2(full_list, i ):
                 except IndexError:
                     break
                     a = 0
-patient_id = 1 #int(input("Introduce a patient id: "))
-#def opt_3(all_dict, patient_id):
-index = 0
-while index <= len(header):
-    try:
-        index += 1
-        key = header[index]
-        info = ("The value for the variable: " + header[index] , all_dict[key][patient_id - 1])
-        print(info)#return(info)
-    except IndexError:
-        break
-    except ValueError:
-        continue
-patient_id_4 = 1#input("Introude a patient id: ")
-number_variable = 1 #input("Introduce the number for the variable you want to change: ")
-new_variable = 1  #input("Intoduce a new variable: ")
-#def opt_4(full_list, number_variable, new_variable, patien_id_4):
-index = 0
-values_list = full_list[index]
-values_list[patient_id - 1: patient_id] = [new_variable]
-print("The information is now : " )
-while index <= len(header):
-    try:
-        index += 1
-        info = "The value for the variable: " + header[index] + full_list[index][patient_id_4]
-        print(info)
-    except IndexError:
-        break
+def opt_3(all_dict, patient_id):
+    index = 0
+    while index <= len(header):
+        try:
+            index += 1
+            key = header[index]
+            info = ("The value for the variable: " + header[index] , all_dict[key][patient_id - 1])
+            print(info)#return(info)
+        except IndexError:
+            break
+        except ValueError:
+            continue
+def opt_4(full_list, number_variable, new_variable, patien_id_4):
+    index = 0
+    values_list = full_list[index]
+    values_list[patient_id - 1: patient_id] = [new_variable]
+    while index <= len(header):
+        try:
+            index += 1
+            info = "The value for the variable: " + header[index] + full_list[index][patient_id_4]
+            print(info)
+        except IndexError:
+            break
 def opt_5(all_dict):
     new_file_name =  "a2" #input("Introduce a name for the new file: ")
     new_file = open(new_file_name, "w")
@@ -141,3 +136,32 @@ def opt_5(all_dict):
                 continue
             new_file.close()
         return "Copy"
+
+#Main program
+not_finish = False
+while not_finish:
+    print(menu())
+    try:
+        election = int(input("Please choose an election from the menu: "))
+        if election == 1:
+            print(menu_var())
+            print(opt_1())
+        elif election == 2:
+            print(opt_2())
+        elif election == 3:
+            patient_id = int(input("Introduce a patient id: "))
+            print(opt_3(all_dict, patient_id)) #La funcion no esta definida totalmente, de ahi el error
+        elif election == 4:
+            patient_id_4 = input("Introude a patient id: ")
+            number_variable = input("Introduce the number for the variable you want to change: ")
+            new_variable = input("Intoduce a new variable: ")
+            print("The information is now : ")
+            print(opt_4(full_list, number_variable, new_variable, patient_id_4))#Mismo comentario al anterior
+        elif election == 5:
+            print(opt_5(all_dict))
+        elif election == 6:
+            break
+        else:
+            print("Introduce a number from the menu")
+    except ValueError:
+        print("Introduce a number. Try again.")
