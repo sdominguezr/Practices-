@@ -105,17 +105,15 @@ def opt_3(all_dict, patient_id):
             break
         except ValueError:
             continue
-def opt_4(full_list, number_variable, new_variable, patien_id_4):
+def opt_4(full_list, number_variable, new_variable, patient_id_4):
     index = 0
     values_list = full_list[index]
-    values_list[patient_id - 1: patient_id] = [new_variable]
+    values_list[patient_id_4 - 1: patient_id_4] = [new_variable]
     while index <= len(header):
-        try:
-            index += 1
-            info = "The value for the variable: " + header[index] + full_list[index][patient_id_4]
-            print(info)
-        except IndexError:
-            break
+        index += 1
+        info = "The value for the variable: " + header[index] + full_list[index][patient_id_4]
+        print(info)
+
 def opt_5(all_dict):
     new_file_name =  "a2" #input("Introduce a name for the new file: ")
     new_file = open(new_file_name, "w")
@@ -139,7 +137,7 @@ def opt_5(all_dict):
 
 #Main program
 not_finish = False
-while not_finish:
+while not not_finish:
     print(menu())
     try:
         election = int(input("Please choose an election from the menu: "))
@@ -152,7 +150,7 @@ while not_finish:
             patient_id = int(input("Introduce a patient id: "))
             print(opt_3(all_dict, patient_id)) #La funcion no esta definida totalmente, de ahi el error
         elif election == 4:
-            patient_id_4 = input("Introude a patient id: ")
+            patient_id_4 = int(input("Introude a patient id: "))
             number_variable = input("Introduce the number for the variable you want to change: ")
             new_variable = input("Intoduce a new variable: ")
             print("The information is now : ")

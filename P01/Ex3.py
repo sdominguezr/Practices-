@@ -1,6 +1,8 @@
-import P0.Seq0 as seq0
-GENE_FOLDER = "./Sequences/"
-gene_list = ["U5, ADA, FRAT1, FXN"]
-for gene in gene_list:
-    sequence = seq0.seq_read_fasta(GENE_FOLDER + gene + '.txt')
-    print('Gene' + gene + "-----> lenght: " + seq0.seq_len(sequence))
+import P01.Seq0 as seq0
+from pathlib import Path
+filename = "sequences/ADA.txt"
+def seq_len(filename):
+    without = len(Path(filename).read_text())
+    return "The length of the " + str(filename) + " is"  + str(without)
+print(seq0.seq_len(filename))
+

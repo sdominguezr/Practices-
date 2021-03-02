@@ -16,4 +16,5 @@ def seq_count(seq):
         else:
             g += 1
     gene_dict = {"A": a, 'C': c, 'G': g, 'T': t}
+    return
 
