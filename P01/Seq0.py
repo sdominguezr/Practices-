@@ -87,3 +87,4 @@ def processing_genes(filename, all_file_withn): #Ejercicio 8
     dict_count = dict(zip(count_list, base))
     order_count = sorted(count_list)
     return ("The most common base in " + filename + " is " + dict_count[(order_count[-1])])
+

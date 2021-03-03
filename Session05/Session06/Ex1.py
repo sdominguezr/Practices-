@@ -1,3 +1,4 @@
+import P01.Seq0 as seq0
 class Seq:
     """A class for representing sequences"""
 
@@ -5,7 +6,8 @@ class Seq:
 
         # Initialize the sequence with the value
         # passed as argument when creating the object
-        if self.is_valid_sequence():
+        self.strbases = strbases
+        if self.is_valid_sequence(): #if seq0.is_valid_sequence(strbases):
             self.strbases = strbases
             print("New sequence created!")
         else:
@@ -26,6 +28,10 @@ class Seq:
     def len(self):
         """Calculate the length of the sequence"""
         return len(self.strbases)
+    @staticmethod
+    def print_seqs(list_sequences):
+        for i in range(0, len(list_sequences)):
+            print("Sequence", i, ": lenght ", list_sequences[i].len())
 class Gene(Seq): #Child class de SEQ class
     """This class is derived from the Seq Class
        All the objects of class Gene will inherite
@@ -38,7 +44,4 @@ s2 = Seq("CGTAAC")
 
 # -- Printing the objects
 print(f"Sequence 1: {s1}")
-print(f"  Length: {s1.len()}")
 print(f"Sequence 2: {s2}")
-print(f"  Length: {s2.len()}")
-
