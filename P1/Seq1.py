@@ -46,6 +46,7 @@ class Seq:
     def print_seqs(list_sequences):
         for i in range(0, len(list_sequences)):
             print("Sequence", i, ": lenght ", list_sequences[i].len())
+
 def generate_seqs(pattern, number):
     list_seq = []
     for i in range(0, number):
