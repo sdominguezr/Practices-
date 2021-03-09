@@ -105,17 +105,16 @@ def opt_3(all_dict, patient_id):
             break
         except ValueError:
             continue
-def opt_4(full_list, number_variable, new_variable, patient_id_4):
+def opt_4(full_list, number_variable, new_value, patient_id_4):
     index = 0
     values_list = full_list[index]
-    values_list[patient_id_4 - 1: patient_id_4] = [new_variable]
+    values_list[patient_id_4 - 1: patient_id_4] = [new_value]
     while index <= len(header):
         index += 1
         info = "The value for the variable: " + header[index] + full_list[index][patient_id_4]
         print(info)
 
-def opt_5(all_dict):
-    new_file_name =  "a2" #input("Introduce a name for the new file: ")
+def opt_5(full_list, new_file_name):
     new_file = open(new_file_name, "w")
     index_list = 0
     i = 0
@@ -142,20 +141,22 @@ while not not_finish:
     try:
         election = int(input("Please choose an election from the menu: "))
         if election == 1:
+            i = int(input("Please choose an option from the menu variable"))
             print(menu_var())
-            print(opt_1())
+            print(opt_1(full_list, i))
         elif election == 2:
-            print(opt_2())
+            print(opt_2(full_list, i))
         elif election == 3:
             patient_id = int(input("Introduce a patient id: "))
             print(opt_3(all_dict, patient_id)) #La funcion no esta definida totalmente, de ahi el error
         elif election == 4:
             patient_id_4 = int(input("Introude a patient id: "))
             number_variable = input("Introduce the number for the variable you want to change: ")
-            new_variable = input("Intoduce a new variable: ")
+            new_value = input("Intoduce a new value: ")
             print("The information is now : ")
-            print(opt_4(full_list, number_variable, new_variable, patient_id_4))#Mismo comentario al anterior
+            print(opt_4(full_list, number_variable, new_value, patient_id_4))#Mismo comentario al anterior
         elif election == 5:
+            new_file_name = "a2"  # input("Introduce a name for the new file: ")
             print(opt_5(all_dict))
         elif election == 6:
             break
