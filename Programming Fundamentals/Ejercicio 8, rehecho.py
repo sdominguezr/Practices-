@@ -145,6 +145,7 @@ while not not_finish:
             print(menu_var())
             print(opt_1(full_list, i))
         elif election == 2:
+            i = 1
             print(opt_2(full_list, i))
         elif election == 3:
             patient_id = int(input("Introduce a patient id: "))
