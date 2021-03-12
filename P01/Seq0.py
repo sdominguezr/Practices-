@@ -70,9 +70,9 @@ def seq_complement(filename): #Ejercicio 7
         else:
             break
     return complement, extract_list
-def processing_genes(filename, all_file_withn): #Ejercicio 8
+def processing_genes(filename, all_file_within): #Ejercicio 8
     all_file_list = []
-    for element in all_file_withn:
+    for element in all_file_within:
         if element == "\n":
             None
         else:
