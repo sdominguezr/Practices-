@@ -101,23 +101,19 @@ class Seq:
     @staticmethod
     def read_fasta(self, filename):
         self.strbases = Seq.take_out_first_line(Path(filename).read_text())
-    def processing_genes(self, filename):
+    def processing_genes(self, filename, all_file_within):
         if self.strbases == Seq.NULL_SEQUENCES:
             return "NULL"
         elif self.strbases == Seq.INVALID_SEQUENCE:
             return "ERROR"
         else:
-            PROJECT_PATH = "./PROJECT/"
-            gene_list = ["U5", "ADA", "FRAT1", "FXN"]
-            for gene in gene_list:
-                filename = PROJECT_PATH + gene + ".txt"
-                all_file_list = []
-                for element in list(filename):
-                    if element == "\n":
-                        None
-                    else:
-                        element = element
-                        all_file_list.append(element)
+            all_file_list = []
+            for element in all_file_within:
+                if element == "\n":
+                    None
+                else:
+                    element = element
+                    all_file_list.append(element)
                 count_a = all_file_list.count("A")
                 count_c = all_file_list.count("C")
                 count_g = all_file_list.count("G")
@@ -126,10 +122,10 @@ class Seq:
                 count_list = [count_a, count_c, count_g, count_t]
                 dict_count = dict(zip(count_list, base))
                 order_count = sorted(count_list)
-                return ("The most common base in " + Seq.read_fasta(filename) + " is " + dict_count[(order_count[-1])])
-
+                return ("The most common base in " + filename + " is " + dict_count[(order_count[-1])])
 def test_sequences():
     s1 = Seq()
     s2 = Seq("ACTGA")
     s3 = Seq("Invalid sequence")
     return s1,s2,s3
+

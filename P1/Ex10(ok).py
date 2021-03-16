@@ -1,19 +1,20 @@
 from P1.Seq1 import Seq
+from pathlib import Path
 def print_result(i, sequence):
     print("Sequences "+ str(i) + " :(lenght: "+ str(sequence.len()) + ")" + str(sequence))
     print("Bases: ", sequence.count())
     print("Reverse: ", sequence.reverse())
     print("Complement :", sequence.complement())
-    #print("Common base: ", sequence.processing_genes())
+    print("Common base: ", sequence.processing_genes())
 
-PROJECT_PATH = "./PROJECT/"
-print("----|PRACTICE 1, EXERCISE 9|-----")
+
+print("----|PRACTICE 1, EXERCISE 10|-----")
 s1 = Seq()
 print_result('', s1)
-print(s1.strbases)
-print(s1.strbases[0:20])
+PROJECT_PATH = "./PROJECT/"
 gene_list = ["U5", "ADA", "FRAT1", "FXN"]
 for gene in gene_list:
-    print(s1.read_fasta(PROJECT_PATH + gene + ".txt"))
-
+    filename = PROJECT_PATH + gene + ".txt"
+    all_file_within = list(Path(filename).read_text() )#str
+    print("Common base: ", Seq.processing_genes(filename, all_file_within))
 
