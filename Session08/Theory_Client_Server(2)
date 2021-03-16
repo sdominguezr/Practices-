@@ -1,0 +1,41 @@
+In internet to interact we need an IP adress, es lo qye va a estar conectado a internet.
+En la mayoria de los casos podemos hacer una analogia y el servicio postal. El Ip adress sera la direccion
+a la que queremos mandar la informacion, en este caso como servidores nosotros ponemos la info y la Ip será
+la direccion a la que enviamos la informacion. (Nota: En internet funciona de esta manera, mas o menos)
+Sin embargo lo que tenemos que saber al menos para enviar o conseguir info es la Ip adress(Nota: desconocemos
+el trayecto que va a tomar pero si sabemos el final)
+
+Para poder referirnos a la Ip, como es un numero muy largo, nos es mas facil recordar la URL. Las urls tienen la
+misma funcion que la IP adress con la diferencia que es la URL es estatica mientras que la IP adress es dinamica
+(a lo que me refiero es que pueden ir cambiando segun el servidor que te provea de internet, puede ir rotando entre
+3,4 IPs diferentes)
+
+PORT: mecanismo para usar diferentes aplicaciones pero con un mismo IP. Si queremos usar supolngamos https tenemos que
+decir la HTTP y el puerto, puesto que con una misma direccion IP podemos estar teniendo en activo otro paquete de HTTP
+y el ordenador no sabe si nos estamos refiriendo a ese o a otro, para diferenciarlos usaremos los PORT del servidor y el
+cliente.
+
+En algunos casos podemos encontrar que tanto el cliente como el servidor estan en el mismo ordenador. Generalmente se
+usa para hacer pruebas antes de lanzarlo.
+
+----IP ADRESS----
+Para poder ver las ips que esta usando el ordenador se usara en CMO: "ipconfig". Cada ordenador tiene un ip unico,una
+que hemos dejado atrás la casa(router), conocido como "public Ip adress"
+-->Ping:
+    Para ver si el ordenador tiene señar para un servidor determinado SND (eg 8.8.8.8)  se puede utilizar "ping". Ping se
+    configurar de tal manera para que el ordenador no responda al comando de ping. Ping puede usarse para cualquier servidor,
+    incluso si no estan en España.
+----URLS----
+Las URLS son mas faciles de recordar. Sin embargo, aunque es mas facil nostros este formato internet funciona gracias al
+uso de IP adress. Para cambiar del formato que nostros conocemos al formato que la maquina entiende usaremos el DNS (es
+una traduccion)
+
+
+----SOCKETS-----
+Supongamos que las SOCKET sea como una especia de plaga. En nuestro ordenor, suponiendo que somos los cliente, tendremos
+un socket, mientras que el servidor tendrá otro socket que se estarán comunicando entre ellos en ambas direcciones
+(somo una especia de cuerda) Para que funcione se necesita el IP adress y el PORT.
+Para usarki tenemos que crear el socket, conectarlo a otro (IP, PORT) pareja. Escribir la info que que se va a mandar y
+posterior lectura de esa info. Y se finaliza con cerrando el SOCKET.
+
+
