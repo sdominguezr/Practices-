@@ -1,4 +1,5 @@
 import socket
+from termcolor import colored
 class Client:
     def __init__(self, ip, port):
         self.ip = ip
@@ -36,6 +37,7 @@ class Client:
 
         # Return the response
         return "From server: " + response
-    def debug_talk(self): #Ejercicio 4
-        return "colors"
+    def debug_talk(self, msg): #Ejercicio 4
+        new_msg = colored(msg, "red")
+        return new_msg
 

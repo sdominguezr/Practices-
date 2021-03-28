@@ -59,7 +59,7 @@ print(f"Sequence 1: {s1}")
 print(f"  Length: {s1.len()}")
 print(f"Sequence 2: {s2}")
 print(f"  Length: {s2.len()}")
-#-------- Session 09/03 -------
+#-------- Session 09/Theory2303 -------
 #Para comunicarnos con los objetos usamos los metodos
 #Diferences between self.strbases and strbases
     #strbases = informacion que damos a la class
