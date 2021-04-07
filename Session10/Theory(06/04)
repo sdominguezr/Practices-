@@ -1,0 +1,45 @@
+Por def los servers no se conectan a los clientes. Los servers van a estar esperando por acciones de los clientes, por ellos
+mismos no se pueen conectar. Como cliente tenenos que elegir el apropiado PORT e IP, si no fuera el correcto/apropiado
+no conectariamos ya que no coicniden los valores de PORT y IP.
+    (suppose IP = XXX.YYY.Z.W; PORT= VVVV)
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)=> creacion de servidor
+s.connect(IP, PORT) => "hey!, I want to conect to you" (cliente conectando al servidor)
+
+------
+Well-known port = Como no estamos especificando ningun PORT, por default nuestro ordenador daará por hecho que ya hay un
+port y que directamente el ordenador se conectará a él.
+----
+Una vez que ya tenemos la conexion podemos enviar/recibir info.
+s.send() #Recuerda codificar antes de enviar .encode()
+s.revc() #Recuerda decodificar despues de recibir el .decode()
+["Magic number": reserva de bytes en la maquina para los mensajes recibidos. PERO si   lo sobrepasamos obtendremos solo
+parte del mensaje]
+[TCP connection = en vez de utilizar un tupple de dos usará una de cinco]
+
+
+
+-----------CLIENTES---------
+
+El cliente será la parte del programa que creará el socket e intentará conectar con el PORT. Cuando estamos conectado el
+ya estra recibiendo info. Pero primeramente le server tiene que hb¡aber completado las tareas de creacion, bind, listen ,,,
+Generalmente el cliente podrá desconectarse, el server no puede se quedará en stand by esperando a los clientes.
+Los clientes se conectaran primeramente al socket que estan en modo listening del server y posteriormente crea´ra un socket
+en el server para compartir info dejando libre el del mode listening. Esto dará como resultado que un mismo server este
+conectado a distintos clientes. Sin embargo el numero de clientes conectados a un server, será determinado por el server,
+los clientes que lleguen despues se quedaran en lista de espera
+
+----Server---
+Bind (.bind())= se tiene que especificar. Es el IP/ PORT de donde esta el server. En caso de que los PORT coincidan, pero
+los IP sean distintos no se hará la conexion.
+Listen (.listen())= especfica cuantos clientes es capaz de mantener en linea, esperando, hasta empezar a rechazar peticiones.
+Se especifica por int entre los parentesis.
+Close (.close()) = Hay que cerrar el canal, aunque el servidor se quede encendido.
+--
+Algunas veces el sistema operativo reserva algunos PORT para algunas aplicacione, por lo que en general no se pueden usar.
+Sin embargo podemos usar el siguient comando: .setsockpot(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+Aun así el PORT sigue estando "ocupado" por la anterior apliacion, pero lo podemos usar.
+---
+Cuando aceptamos, el metodo nos retorna dos valores, el socket usado para conectarse con el cliente y ip/port del client
+
+ [NOTA: Para conectarse como cliente tenemos que utilizar el comando nc xxx.xxx.x.x yyyy Donde las x son los numeros de
+ ip e y son lso numeros de port]

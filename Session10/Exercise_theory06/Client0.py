@@ -1,7 +1,5 @@
 import socket
-import termcolor
 from termcolor import colored
-import colorama
 class Client:
     def __init__(self, ip, port):
         self.ip = ip
@@ -33,15 +31,13 @@ class Client:
 
         # Receive data
         response = s.recv(2048).decode("utf-8")
-
+        print ("From server: ", response)
         # Close the socket
         s.close()
 
         # Return the response
         return "From server: " + response
     def debug_talk(self, msg): #Ejercicio 4
-        colorama.init(strip="False")
-        print(termcolor.colored("Message", end=""))
         new_msg = colored(msg, "red")
         return new_msg
 
