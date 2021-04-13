@@ -1,0 +1,39 @@
+    ---Introduction to HTTP control----
+Lanaguage between browser and web server.
+Actualmente HTTP no solo se usa en las web, tambien se usa en las plataformas de streaming (HBO)
+Con el tiempo HTTP ha idoo reemplazando los demas protocolos.
+[En los ejercicios lo usaremos en su forma principal, es decir, en forma de web]
+[Protocol: reglas que el servidor y el cliente tiene que seguir para tener comunicacion]
+    ---Requesting a web page
+STEP 1:
+Clients creates a socket and stablish connection wiht server (listenig socket) y despues clientsocket.
+STEP 2:
+Una vez creado el socket, el cliente inicia interaccion by a request message (pagina web buscada)
+STEP 3:
+El server recibe el request message, lee la pagina HTML desde su disco duro.
+STEP 4:
+El server hace un mensaje que contiene el documento HTML.
+STEP 5:
+El client recibe el mensaje que contiene el documento HTML.
+El client que recordemos es un browser, es capaz de leer documentos en HTML
+
+    ---Mensajes de HHTP
+Hay dos tipos. Request y response.
+Los dos tienen el mismo formato (lines in plain text separados por un caracter especial "\n".
+-Request:
+    Muy importante. Es la parte en donde el client dice lo que quiere.
+    Podemos encontrar 3 partes:
+    -> Method: Command name. Clasificamos en tres:
+        GET: pide un objeto, este es dado por un path
+        POST: el cliente quiere mandar info
+        HEAD: similar a GET. Pero solo pide el header.
+    -> Path:
+    ->Version: es la version de HTTP que se esta usando
+-Response:
+    Podemos encontrar tambien tres parte:
+    ->Version: (lo mismo que en el mensaje)
+    ->Status Code: codigo que dice el estadp del request (Eg: 404--> Not found)
+    ->Status: satus info
+
+
+
