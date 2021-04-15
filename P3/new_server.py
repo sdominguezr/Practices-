@@ -1,6 +1,7 @@
 #Count number of connections to the server
 import socket
 from P3 import server_utilities
+
 list_sequences = ["aljsdkblkadsjf", "lbsjbhjsbhvj", "sljbdbjlsdbjv", "SKFJASDJCjb", "lkxdhBC8374R"]
 
 # Configure the Server's IP and PORT
@@ -50,9 +51,21 @@ while True:
         server_utilities.ping()
         response = "ok"
         cs.send(str(response).encode())
-    elif command == "Set":
+    elif command == "GET":
         response = list_sequences[int(argument)]
         cs.send(response.encode())
+    elif command == "INFO":
+        response = server_utilities.info(argument)
+        cs.send(str(response).encode())
+    elif command == "COMP":
+        response = server_utilities.complement(argument)
+        cs.send((response.encode()))
+    elif command == "REV":
+        response = server_utilities.reverso(argument)
+        cs.send(str(response).encode())
+    elif command == "GENE":
+        response = server_utilities.gene(argument)
+        cs.send(str(response).encode())
     else:
         response = "Not availabe "
         cs.send(str(response).encode())
