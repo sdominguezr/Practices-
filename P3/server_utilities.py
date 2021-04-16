@@ -54,5 +54,7 @@ def gene(argument):
         pass
     except FileNotFoundError:
         pass
+        return "There's no file named in that way"
+
 
 
