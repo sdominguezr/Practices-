@@ -2,7 +2,7 @@
 import socket
 from P3 import server_utilities
 
-list_sequences = ["aljsdkblkadsjf", "lbsjbhjsbhvj", "sljbdbjlsdbjv", "SKFJASDJCjb", "lkxdhBC8374R"]
+list_sequences = ["U5" , "ADA","FRAT1",   "FXN", "RNU6_269P"]
 
 # Configure the Server's IP and PORT
 PORT = 8081
@@ -55,12 +55,15 @@ while True:
         response = list_sequences[int(argument)]
         cs.send(response.encode())
     elif command == "INFO":
+        argument = server_utilities.gene(list_sequences[0])
         response = server_utilities.info(argument)
         cs.send(str(response).encode())
     elif command == "COMP":
+        argument = server_utilities.gene(list_sequences[0])
         response = server_utilities.complement(argument)
         cs.send((response.encode()))
     elif command == "REV":
+        argument = server_utilities.gene(list_sequences[0])
         response = server_utilities.reverso(argument)
         cs.send(str(response).encode())
     elif command == "GENE":

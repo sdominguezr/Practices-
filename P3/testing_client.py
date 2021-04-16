@@ -23,7 +23,7 @@ class Client:
 
     def __str__(self):
         return "Connection to server at "+ self.ip+ ",port "+ str(self.port)
-    def talk(self, argument): #create connection
+    def talk(self, command): #create connection
         # -- Create the socket
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -31,7 +31,7 @@ class Client:
         s.connect((self.ip, self.port))
 
         # Send data.
-        s.send(str.encode(argument))
+        s.send(str.encode(command))
 
         # Receive data
         response = s.recv(2048).decode("utf-8")
@@ -41,16 +41,16 @@ class Client:
 
         # Return the response
         return "From server: " + response
-    def debug_talk(self, argument): #Ejercicio 4
+    def debug_talk(self, command): #Ejercicio 4
         colorama.init(strip="False")
         print(termcolor.colored("Message", end=""))
-        new_msg = colored(argument, "red")
+        new_msg = colored(command, "red")
         return new_msg
 
 c = Client(IP, PORT)
 while True:
-    argument = input("Write an option: ")
-    print(c.talk(argument))
-    if argument == "EXIT":
+    command = input("Write an option: ")
+    print(c.talk(command))
+    if command == "EXIT":
         break
 
