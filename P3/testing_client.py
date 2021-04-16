@@ -2,6 +2,8 @@ import socket
 import termcolor
 from termcolor import colored
 import colorama
+PORT = 8081
+IP = "127.0.0.1"
 class Client:
     def __init__(self, ip, port):
         self.ip = ip
@@ -21,7 +23,7 @@ class Client:
 
     def __str__(self):
         return "Connection to server at "+ self.ip+ ",port "+ str(self.port)
-    def talk(self, msg): #create connection
+    def talk(self, argument): #create connection
         # -- Create the socket
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -29,7 +31,7 @@ class Client:
         s.connect((self.ip, self.port))
 
         # Send data.
-        s.send(str.encode(msg))
+        s.send(str.encode(argument))
 
         # Receive data
         response = s.recv(2048).decode("utf-8")
@@ -39,9 +41,16 @@ class Client:
 
         # Return the response
         return "From server: " + response
-    def debug_talk(self, msg): #Ejercicio 4
+    def debug_talk(self, argument): #Ejercicio 4
         colorama.init(strip="False")
         print(termcolor.colored("Message", end=""))
-        new_msg = colored(msg, "red")
+        new_msg = colored(argument, "red")
         return new_msg
+
+c = Client(IP, PORT)
+while True:
+    argument = input("Write an option: ")
+    print(c.talk(argument))
+    if argument == "EXIT":
+        break
 

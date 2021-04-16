@@ -1,13 +1,11 @@
 import termcolor
 from pathlib import Path
 def print_colored(message, color):
-
     print(termcolor.colored(message, color))
 def format_command(command):
     return command.replace("\n", "").replace("\r", "")
 def ping():
     print_colored("Ping command", "green")
-
 def info(argument):
     a, c, g, t = 0, 0, 0, 0
     for ch in argument:
@@ -22,9 +20,9 @@ def info(argument):
     information = "Total length: " + str(len(argument)) + "\n" +\
                   "A: " + str(a)+ " (" + str(a*100/len(argument))+ '%)' + "\n"+ "C: " + str(c) + " (" + str(c*100/len(argument))+ '%)' +\
                   "\n"+ "G: "+ str(g) + " (" + str(g*100/len(argument)) + '%)' + "\n"+ "T: " + str(t) + " (" + str(a*100/len(argument))+ '%)'
+    print(information)
     return information
 def complement(argument):
-
     complement = ""
     for ch in argument:
         if ch == "A":
@@ -37,10 +35,13 @@ def complement(argument):
             complement += "A"
         else:
             complement = "It is not a proper DNA chain"
+    print(complement)
     return str(complement)
 def reverso(argument):
+    print(str(argument[::-1]))
     return str(argument[::-1])
 def gene(argument):
     PATH_NAME = "./Sequences/"
     argument = PATH_NAME + argument + ".txt"
-    return str (Path(argument).read_text())
+    print(str(Path(argument).read_text()))
+    return str(Path(argument).read_text())

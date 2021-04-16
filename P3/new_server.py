@@ -5,7 +5,7 @@ from P3 import server_utilities
 list_sequences = ["aljsdkblkadsjf", "lbsjbhjsbhvj", "sljbdbjlsdbjv", "SKFJASDJCjb", "lkxdhBC8374R"]
 
 # Configure the Server's IP and PORT
-PORT = 8080
+PORT = 8081
 IP = "127.0.0.1"  # Esto significa a que unicamente funcionará para aquellos programas que esten en la misma maquina
 # IP se puede quedar en blanco tambien
 # -- Step 1: create the socket
@@ -17,14 +17,14 @@ count_connection = 0
 ls.listen()
 client_address_list =[]
 count = +1
-print ("Ther server is configured")
+print("The server is configured")
 while True:
     # -- Waits for a client to connect
     print("Waiting for Clients to connect")
     try:
         (cs, client_ip_port) = ls.accept()
         count_connection =+ 1
-        print ("Connection "+ str(count_connection) + ". Client IP, PORT: " + str(client_ip_port))
+        print("Connection " + str(count_connection) + ". Client IP, PORT: " + str(client_ip_port))
     # -- Server stopped manually
     except KeyboardInterrupt:
         print("Server stopped by the user")
@@ -66,8 +66,12 @@ while True:
     elif command == "GENE":
         response = server_utilities.gene(argument)
         cs.send(str(response).encode())
+    elif command == "EXIT":
+        response = "CONNECTION HAS FINISHED"
+        cs.send((str(response).encode()))
+        break
     else:
         response = "Not availabe "
         cs.send(str(response).encode())
     cs.close()
-    exit(0)
+
