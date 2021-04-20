@@ -1,0 +1,11 @@
+---HTTP MODULES (CREATION OF SERVERS)----
+
+--->HTTP modules
+m: stands for module
+"python -m http.server 8080"
+---> Handller
+TCP va esyar escuchando de manera 1:1. En algunas ocasiones, el programa no sabe leer
+por lo que se usa el TCP.serever("","") [it's a tupple]
+Aquó va estar la info.
+Podemos encontrar dos
+- Class, the one that we'be created
