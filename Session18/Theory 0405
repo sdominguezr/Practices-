@@ -1,0 +1,17 @@
+----JSON and API rest-----
+----->JSON format
+JSON es un formato estandar que es usado para procesar data.
+Permite definir la estructura de nuestra info
+Para ir guardando info se van creando objetos que van a ir entre corchtes
+{ (la sintaxix es parecida a los dicionarios de python)
+EG:   { {"hello": "how are you?",
+        "today is:": 04 }, {"good:" : "i'm happy for heraing that}}
+Las key NO pueden ser NUMEROS
+eXAMPLES(1)
+
+-----> API rest
+Aunque mayormente se usan los webservers para la comunicacion con humanos
+se pueden utilizar los webserver diferentes obejto que no sean necesariamente
+para humanos. De esta manera apracen los API (application programming interface)
+El protocolo usado es el HTTP. La respuesta a estos servers estrán en formato
+"JSON format"
