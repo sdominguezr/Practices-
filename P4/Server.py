@@ -4,7 +4,7 @@ import pathlib
 
 # -- Server network parameters
 IP = "127.0.0.1"
-PORT = 8081
+PORT = 8085
 
 def read_html_file(filename):
     content = pathlib.Path(filename).read_text()

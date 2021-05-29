@@ -5,7 +5,7 @@ from P3 import server_utilities
 list_sequences = ["U5" , "ADA","FRAT1",   "FXN", "RNU6_269P"]
 
 
-PORT = 8081
+PORT = 8082
 IP = "127.0.0.1"  # Esto significa a que unicamente funcionará para aquellos programas que esten en la misma maquina
 # IP se puede quedar en blanco tambien
 
