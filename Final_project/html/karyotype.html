@@ -6,10 +6,10 @@
         </head>
         <body style="background:powderblue">
         <h1>Karyotype</h1>
-        <p>The karyotype is : </p> {{karyotype}}
+        <p>The karyotype is : </p>
         <ul>
         {% for element in karyotype %}
-            <li>{{ name }}</li>
+            <li>{{ element }}</li>
         {% endfor %}
         </ul>
         <a href = main_page.html>Main page</a>

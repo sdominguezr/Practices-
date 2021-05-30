@@ -31,9 +31,11 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 species_len, common_names = Functions.get_info_species(limit)
                 format_parameters = {'species_len': species_len, 'limit': limit, 'common_names': common_names}
                 contents = Functions.read_template_html_file("./html/limit_sequence.html", **format_parameters)
+            #Las dos estrellas estan para simplificar el codigo, y no escribir los keyarguments dos veces,
+            #Kwarg => length=length (el primero va en rojo)
             elif "/karyotype" in self.path:
                 query_params_kariotype = self.path.split('?')[1]
-                name_specie = (parse_qs(query_params_kariotype)["karyotype"][0])
+                name_specie = parse_qs(query_params_kariotype)["karyotype"][0]
                 result_karyotype = Functions.get_karyotype(name_specie)
                 format_parameters_karyo = {'karyotype': result_karyotype}
                 contents = Functions.read_template_html_file("./html/karyotype.html", **format_parameters_karyo)
@@ -45,24 +47,34 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 result_number_of_chromosome = str(Functions.get_length_chromosome(specie, number_of_chromosome))
                 format_parameter = {'length': result_number_of_chromosome}
                 contents = (Functions.read_template_html_file('./html/chromosome_length.html', **format_parameter))
-                #contents = Functions.read_html_file("./html/info/G.html")
-            elif self.path == "/info/T":
-                contents = Functions.read_html_file("./html/info/T.html")
-            elif self.path.endswith((".html")):
-                try:
-                    contents = Functions.read_html_file(".html" + self.path)
-                except FileNotFoundError:
-                    contents = Functions.read_html_file("./html/error.html")
+            elif '/gene_seq' in self.path:
+                query_params = self.path.split('?')[1]
+                name_sequence = parse_qs(query_params)["name"]
+                name_sequence = " ".join(name_sequence)
+                result_seq, request_name, len_seq, seq_count_A, seq_count_C, seq_count_G, seq_count_T= Functions.get_code_gene_sequence_of_dna(str(name_sequence))
+                format_parameter = {'sequence': result_seq}
+                contents = Functions.read_template_html_file('./html/gene_seq.html', **format_parameter)
+            elif '/gene_info' in self.path:
+                query_params = self.path.split('?')[1]
+                name_sequence = parse_qs(query_params)["name"]
+                name_sequence = " ".join(name_sequence)
+                result_seq, request_name, len_seq, seq_count_A, seq_count_C, seq_count_G, seq_count_T = Functions.get_code_gene_sequence_of_dna(str(name_sequence))
+                result_start, result_end = Functions.get_start_end(str(name_sequence))
+                format_parameter = {'request_name': request_name, 'len_seq': len_seq, 'name_sequence': name_sequence,
+                                    'result_start': result_start, 'result_end': result_end}
+                contents = Functions.read_template_html_file('./html/gene_info.html', **format_parameter)
+            elif '/gene_calculations' in self.path:
+                query_params = self.path.split('?')[1]
+                name_sequence = parse_qs(query_params)["base"]
+                name_sequence = " ".join(name_sequence)
+                result_seq, request_name, len_seq, seq_count_A, seq_count_C, seq_count_G, seq_count_T  = Functions.get_code_gene_sequence_of_dna(str(name_sequence))
+                format_parameter = {'a': seq_count_A, 'c':seq_count_C, 'g':seq_count_G, 't': seq_count_T, 'len_seq': len_seq }
+                contents = Functions.read_template_html_file('./html/gene_calculations.html', **format_parameter)
             else:
                 contents = Functions.read_html_file("./html/error.html")
         # Message to send back to the clinet
-        except KeyError:
+        except IndexError:
             contents = Functions.read_html_file("./html/error.html")
-        except ValueError:
-            contents = Functions.read_html_file("./html/error.html")
-        except TypeError:
-            contents =Functions.read_html_file('./html/error.html')
-
         # Generating the response message
         self.send_response(200)  # -- Status line: OK!
 
