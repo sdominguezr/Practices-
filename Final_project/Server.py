@@ -73,7 +73,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             else:
                 contents = Functions.read_html_file("./html/error.html")
         # Message to send back to the clinet
-        except IndexError:
+        except Exception:
             contents = Functions.read_html_file("./html/error.html")
         # Generating the response message
         self.send_response(200)  # -- Status line: OK!

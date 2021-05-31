@@ -16,22 +16,24 @@ def process_client(s):
     req = req_raw.decode()
 
     print("Message FROM CLIENT: ")
-
     # -- Split the request messages into lines
     lines = req.split('\n')
 
     # -- The request line is the first
     req_line = lines[0]
     request = req_line.split(' ')[1]
+    print(lines)
+    print(request)
     path_name = request.split('?')[0]
     try:
-        parametres = request.split('?')[1]
+        parametres = request.split('?')[0]
+        print("Request: ", request)
+        print("Resource rquested: ", path_name)
+        print("Argument: ", parametres)
+        print("Request line: ", end="")
     except IndexError:
         pass
-    print("Request: ", request)
-    print("Resource rquested: ", path_name)
-    print ("Arhument: ", parametres)
-    print("Request line: ", end="")
+
     termcolor.cprint(req_line, "green")
 
     # -- Generate the response message
@@ -49,28 +51,23 @@ def process_client(s):
 
     # -- Add the Content-Type header
     header = "Content-Type: text/html\n"
-    HTML_ASSETS = "./html"
-    if path_name == "/":
+    HTML_ASSETS = "./html/"
+    if path_name == '/':
         body = read_html_file((HTML_ASSETS + "index.html"))
         #wher's the letterer?
     elif '/info/' in path_name:
         try:
-            body = read_html_file(HTML_ASSETS + path_name.split("/")[-1] + '.html')
+            body = read_html_file(HTML_ASSETS + path_name.split('/')[-1] + '.html')
+
         except FileNotFoundError:
-            body = read_html_file((HTML_ASSETS + "error.html"))
+            body = read_html_file("./html/C.html")
+
     else:
-        body = read_html_file((HTML_ASSETS + "error.html"))
+        body = read_html_file((HTML_ASSETS + "/error.html"))
 
 
 
-    """if path_name == "/info/A":
-        body = read_html_file("./html/A.html")
-    elif path_name == "/info/C":
-        body = read_html_file("./html/C.html")
-    elif path_name == "/info/T":
-        body = read_html_file("./html/T.html")
-    elif path_name == "/info/G":
-        body = read_html_file("./html/G.html")"""
+
     # -- Add the Content-Length
     header += f"Content-Length: {len(body)}\n"
 
