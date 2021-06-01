@@ -3,7 +3,7 @@ import socket
 # SERVER IP, PORT
 # Write here the correct parameter for connecting to the
 # Teacher's server
-PORT = 8081 #Constante de PORT que va a conectar dos partes cliente-servidor
+PORT = 1200 #Constante de PORT que va a conectar dos partes cliente-servidor
 IP = "127.0.0.1"
 
 

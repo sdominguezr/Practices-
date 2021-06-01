@@ -80,6 +80,4 @@ def get_start_end(name_sequence):
 
 
 
-sentence = 'abcd'
-sentence =list(sentence)
-print (sentence)
+
