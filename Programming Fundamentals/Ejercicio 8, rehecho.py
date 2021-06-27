@@ -81,38 +81,74 @@ igual = 5
 list_values = []
 all_dict = dict(zip(header[1:], full_list[1:]))
 print(all_dict)
-def opt_2(full_list, i ):
-    for index in range(0, len(full_list[i])):
-        if full_list[i][index] == str(igual):
-            index
-            a = 1
-            while a <= len(header):
-                try:
-                    print(str(header[a] + "; " + str(full_list[a][index])))
-                    a += 1
-                except IndexError:
-                    break
-                    a = 0
-def opt_3(all_dict, patient_id):
-    index = 0
-    while index <= len(header):
-        try:
-            index += 1
-            key = header[index]
-            info = ("The value for the variable: " + header[index] , all_dict[key][patient_id - 1])
-            print(info)#return(info)
-        except IndexError:
+def opt_2(full_list, header, parameter, common_value ):
+    try:
+        value = int(0)
+        for value in range(0, len(full_list[0])):
+            total_dict = {header[0]: full_list[0][int(value)], header[1]: full_list[1][int(value)],
+                          header[2]: full_list[2][int(value)], header[3]: full_list[3][int(value)],
+                          header[4]: full_list[4][int(value)], header[5]: full_list[5][int(value)],
+                          header[6]: full_list[6][int(value)], header[7]: full_list[7][int(value)],
+                          header[8]: full_list[8][int(value)]}
+            value = value + 1
+            if value > len(full_list[0]):
+                break
+            if total_dict['"' + parameter + '"'] == common_value:
+                return (total_dict)
+    except Exception:
+        return "The program has encountered a problem. Try again"
+def opt_3(patient_id):
+    try:
+        value = int(0)
+        for value in range(0, len(full_list[0])):
+            total_dict = {'"id"': full_list[0][int(value)], header[1]: full_list[1][int(value)],
+                          header[2]: full_list[2][int(value)], header[3]: full_list[3][int(value)],
+                          header[4]: full_list[4][int(value)], header[5]: full_list[5][int(value)],
+                          header[6]: full_list[6][int(value)], header[7]: full_list[7][int(value)],
+                          header[8]: full_list[8][int(value)]}
+            value = value + 1
+            if value > len(full_list[0]):
+                break
+            if total_dict['"id"'] == '"' + patient_id + '"':
+                information = ("The patient's id is: " + total_dict['"id"'] + "\n"
+                            "The value of var npreg is: " + total_dict['"npreg"'] + "\n"
+                            "The value of var glu is: " + total_dict['"glu"'] + "\n"
+                            "The value of var bp is: " + total_dict['"bp"'] + "\n"
+                            "The value of var skin is: " + total_dict['"skin"'] + "\n"
+                            "The value of var bmi is: " + total_dict['"bmi"'] + "\n"
+                            "The value of var ped is: " + total_dict['"ped"'] + "\n"
+                            "The value of var age is: " + total_dict['"age"'] + "\n"
+                            "The value of var type is: " + total_dict['"type"'] + "\n")
+                return (information)
+                break
+            else:
+                continue
+    except Exception:
+        return "There was a problem during the execution. Try again."
+
+def opt_4(full_list, name_variable, new_value, patient_number):
+    total_list_dict = []
+    value = int(0)
+    for value in range(0, len(full_list[0])):
+        total_dict = {'"id"': full_list[0][int(value)], header[1]: full_list[1][int(value)],
+                      header[2]: full_list[2][int(value)], header[3]: full_list[3][int(value)],
+                      header[4]: full_list[4][int(value)], header[5]: full_list[5][int(value)],
+                      header[6]: full_list[6][int(value)], header[7]: full_list[7][int(value)],
+                      header[8]: full_list[8][int(value)]}
+        value = value + 1
+        if value > len(full_list[0]):
             break
-        except ValueError:
-            continue
-def opt_4(full_list, number_variable, new_value, patient_id_4):
-    index = 0
-    values_list = full_list[index]
-    values_list[patient_id_4 - 1: patient_id_4] = [new_value]
-    while index <= len(header):
-        index += 1
-        info = "The value for the variable: " + header[index] + full_list[index][patient_id_4]
-        print(info)
+        else:
+            total_list_dict.append(total_dict)
+    (total_list_dict[patient_number + 1].update({'"' + name_variable + '"': str(new_value)}))
+    update_information = ("The patient's id is: " + total_list_dict[patient_number + 1] + "\n"
+                          "The patient's id is: " + total_dict['"id"'] + "\n" 
+                          "The patient's id is: " + total_dict['"id"'] + "\n"
+                          "The patient's id is: " + total_dict['"id"'] + "\n"
+                          "The patient's id is: " + total_dict['"id"'] + "\n"
+                          "The patient's id is: " + total_dict['"id"'] + "\n"
+                          "The patient's id is: " + total_dict['"id"'] + "\n")
+    return (total_list_dict)
 
 def opt_5(full_list, new_file_name):
     new_file = open(new_file_name, "w")
@@ -145,17 +181,18 @@ while not not_finish:
             print(menu_var())
             print(opt_1(full_list, i))
         elif election == 2:
-            i = 1
-            print(opt_2(full_list, i))
+            parameter = input("Please introduce the parameter in common: ")
+            common_value = input("Please introduce the value you want the parameter to have in common")
+            print(opt_2(full_list, header, parameter, common_value))
         elif election == 3:
-            patient_id = int(input("Introduce a patient id: "))
-            print(opt_3(all_dict, patient_id)) #La funcion no esta definida totalmente, de ahi el error
+            patient_id = (input("Introduce a patient id: "))
+            print(opt_3( patient_id))
         elif election == 4:
-            patient_id_4 = int(input("Introude a patient id: "))
-            number_variable = input("Introduce the number for the variable you want to change: ")
+            patient_number = int(input("Introude a patient id: "))
+            name_variable = input("Introduce the number for the variable you want to change: ")
             new_value = input("Intoduce a new value: ")
             print("The information is now : ")
-            print(opt_4(full_list, number_variable, new_value, patient_id_4))#Mismo comentario al anterior
+            print(opt_4(full_list, name_variable, new_value, patient_number))
         elif election == 5:
             new_file_name = "a2"  # input("Introduce a name for the new file: ")
             print(opt_5(all_dict))
