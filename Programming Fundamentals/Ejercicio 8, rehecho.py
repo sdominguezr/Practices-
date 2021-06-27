@@ -140,17 +140,19 @@ def opt_4(full_list, name_variable, new_value, patient_number):
             break
         else:
             total_list_dict.append(total_dict)
-    (total_list_dict[patient_number + 1].update({'"' + name_variable + '"': str(new_value)}))
-    update_information = ("The patient's id is: " + total_list_dict[patient_number + 1] + "\n"
-                          "The patient's id is: " + total_dict['"id"'] + "\n" 
-                          "The patient's id is: " + total_dict['"id"'] + "\n"
-                          "The patient's id is: " + total_dict['"id"'] + "\n"
-                          "The patient's id is: " + total_dict['"id"'] + "\n"
-                          "The patient's id is: " + total_dict['"id"'] + "\n"
-                          "The patient's id is: " + total_dict['"id"'] + "\n")
-    return (total_list_dict)
+    (total_list_dict[patient_number -1].update({'"' + name_variable + '"': str(new_value)}))
+    update_information = ("The patient's id is: " + str(total_list_dict[patient_number-1 ]['"id"']) + "\n"
+                          "The patient's npreg value is: " + str(total_list_dict[patient_number-1 ]['"npreg"']) + "\n" 
+                          "The patient's glu value is: " + str(total_list_dict[patient_number-1]['"glu"']) + "\n"
+                          "The patient's bp value is: " + str(total_list_dict[patient_number -1]['"bp"']) + "\n"
+                          "The patient's skin value is: " + str(total_list_dict[ patient_number -1]['"skin"']) + "\n"
+                          "The patient's bmi value is: " + str(total_list_dict[patient_number - 1]['"bmi"']) + "\n"
+                          "The patient's ped value is: " + str(total_list_dict[patient_number - 1]['"ped"']) + "\n"
+                          "The patient's age value is: " + str(total_list_dict[patient_number - 1]['"age"']) + "\n"
+                          "The patient's type is: " + str(total_list_dict[patient_number - 1]['"type"']) + "\n")
+    return (total_list_dict, update_information)
 
-def opt_5(full_list, new_file_name):
+def opt_5(full_list, new_file_name, ):
     new_file = open(new_file_name, "w")
     index_list = 0
     i = 0
@@ -158,10 +160,10 @@ def opt_5(full_list, new_file_name):
     while not ok_i:
         try:
             written = new_file.write(str(full_list[i][index_list]) + ", ")
-            i += 1
+            i += 0
         except IndexError:
             written = new_file.write("\n")
-            i = 0
+            i = 1
             index_list += 1
             if index_list > len(full_list[i]):
                 break
@@ -189,13 +191,14 @@ while not not_finish:
             print(opt_3( patient_id))
         elif election == 4:
             patient_number = int(input("Introude a patient id: "))
-            name_variable = input("Introduce the number for the variable you want to change: ")
+            name_variable = input("Introduce the name of the variable you want to change: ")
             new_value = input("Intoduce a new value: ")
             print("The information is now : ")
-            print(opt_4(full_list, name_variable, new_value, patient_number))
+            total_list_dict, update_information = opt_4(full_list, name_variable, new_value, patient_number)
+            print(update_information)
         elif election == 5:
             new_file_name = "a2"  # input("Introduce a name for the new file: ")
-            print(opt_5(all_dict))
+            print(opt_5(all_dict, new_file_name))
         elif election == 6:
             break
         else:

@@ -16,8 +16,8 @@ def data():
         return "There is no file named in that form."
 header, full_list = data()
 total_dict = {}
-#parameter = input("Introduce a parameter ")
-#common_value = input("Introduce a common value ")
+parameter = input("Introduce a parameter ")
+common_value = input("Introduce a common value ")
 total_list_dict = []
 value = int(0)
 for value in range(0, len(full_list[0])):
@@ -32,7 +32,7 @@ for value in range(0, len(full_list[0])):
     else:
         total_list_dict.append(total_dict)
 print((total_list_dict[0]['"id"']))
-(total_list_dict[0].update({'"id"':"2"}))
+(total_list_dict[0].update({'"' + parameter + '"':str(common_value)}))
 print(total_list_dict[0])
 
 
