@@ -20,20 +20,40 @@ parameter = input("Introduce a parameter ")
 common_value = input("Introduce a common value ")
 total_list_dict = []
 value = int(0)
-for value in range(0, len(full_list[0])):
-    total_dict = {'"id"': full_list[0][int(value)], header[1]: full_list[1][int(value)],
-                  header[2]: full_list[2][int(value)], header[3]: full_list[3][int(value)],
-                  header[4]: full_list[4][int(value)], header[5]: full_list[5][int(value)],
-                  header[6]: full_list[6][int(value)], header[7]: full_list[7][int(value)],
-                  header[8]: full_list[8][int(value)]}
-    value = value + 1
-    if value > len(full_list[0]):
-        break
-    else:
+
+def dict():
+    total_dict = {}
+    for value in range(0, len(full_list[0])):
+        total_dict = {'"id"': full_list[0][int(value)], header[1]: full_list[1][int(value)],
+                      header[2]: full_list[2][int(value)], header[3]: full_list[3][int(value)],
+                      header[4]: full_list[4][int(value)], header[5]: full_list[5][int(value)],
+                      header[6]: full_list[6][int(value)], header[7]: full_list[7][int(value)],
+                      header[8]: full_list[8][int(value)]}
+        value = value + 1
         total_list_dict.append(total_dict)
-print((total_list_dict[0]['"id"']))
-(total_list_dict[0].update({'"' + parameter + '"':str(common_value)}))
-print(total_list_dict[0])
+        if value > len(full_list[0]):
+            break
+    return(total_list_dict), total_dict
+not_written = False
+total_list_dict, total_dict = dict()
+new_file_name = 'new_prueba'
+while not not_written:
+    new_file = open(new_file_name, "w")
+    i = 0
+    for i in range(0, len(total_list_dict)):
+        copy = new_file.write(str(total_list_dict[i]) + "\n")
+        i = i + 1
+        if i > len(total_list_dict):
+            break
+    if copy > len(total_list_dict):
+        not_written = True
+        break
+
+
+#print((total_list_dict[0]['"id"']))
+#(total_list_dict[0].update({'"' + parameter + '"':str(common_value)}))
+#print(total_list_dict)
+
 
 
 

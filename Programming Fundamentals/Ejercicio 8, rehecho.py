@@ -38,6 +38,19 @@ def menu_var():
              "7.- Age: age in years" + "\n"
              "8.- Type: 'yes' or 'no' for diabetic according to WHO criteria")
     return menu
+def dict():
+    total_dict = {}
+    for value in range(0, len(full_list[0])):
+        total_dict = {'"id"': full_list[0][int(value)], header[1]: full_list[1][int(value)],
+                      header[2]: full_list[2][int(value)], header[3]: full_list[3][int(value)],
+                      header[4]: full_list[4][int(value)], header[5]: full_list[5][int(value)],
+                      header[6]: full_list[6][int(value)], header[7]: full_list[7][int(value)],
+                      header[8]: full_list[8][int(value)]}
+        value = value + 1
+        total_list_dict.append(total_dict)
+        if value > len(full_list[0]):
+            break
+    return(total_list_dict), total_dict
 def opt_1(full_list, i):
     high = 0
     low = 10 ** 10
@@ -80,7 +93,7 @@ def opt_1(full_list, i):
 igual = 5
 list_values = []
 all_dict = dict(zip(header[1:], full_list[1:]))
-print(all_dict)
+#print(all_dict)
 def opt_2(full_list, header, parameter, common_value ):
     try:
         value = int(0)
@@ -152,25 +165,22 @@ def opt_4(full_list, name_variable, new_value, patient_number):
                           "The patient's type is: " + str(total_list_dict[patient_number - 1]['"type"']) + "\n")
     return (total_list_dict, update_information)
 
-def opt_5(full_list, new_file_name, ):
-    new_file = open(new_file_name, "w")
-    index_list = 0
-    i = 0
-    ok_i = False
-    while not ok_i:
-        try:
-            written = new_file.write(str(full_list[i][index_list]) + ", ")
-            i += 0
-        except IndexError:
-            written = new_file.write("\n")
-            i = 1
-            index_list += 1
-            if index_list > len(full_list[i]):
+def opt_5(full_list, new_file_name, total_list_dict ):
+    total_list_dict, total_dict = dict()
+    not_written = False
+    new_file_name = 'new_prueba'
+    while not not_written:
+        new_file = open(new_file_name, "w")
+        i = 0
+        for i in range(0, len(total_list_dict)):
+            copy = new_file.write(str(total_list_dict[i]) + "\n")
+            i = i + 1
+            if i > len(total_list_dict):
                 break
-            else:
-                continue
-            new_file.close()
-        return "Copy"
+        if (copy) > len(total_list_dict):
+            not_written = True
+            break
+
 
 #Main program
 not_finish = False
@@ -197,8 +207,8 @@ while not not_finish:
             total_list_dict, update_information = opt_4(full_list, name_variable, new_value, patient_number)
             print(update_information)
         elif election == 5:
-            new_file_name = "a2"  # input("Introduce a name for the new file: ")
-            print(opt_5(all_dict, new_file_name))
+            new_file_name = "a3"  # input("Introduce a name for the new file: ")
+            print(opt_5(full_list, new_file_name))
         elif election == 6:
             break
         else:
