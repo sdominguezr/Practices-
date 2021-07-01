@@ -16,53 +16,47 @@ def data():
         return "There is no file named in that form."
 header, full_list = data()
 total_dict = {}
-parameter = input("Introduce a parameter ")
-common_value = input("Introduce a common value ")
+#parameter = input("Introduce a parameter ")
+#common_value = input("Introduce a common value ")
 total_list_dict = []
 value = int(0)
 
-def dict():
-    total_dict = {}
-    for value in range(0, len(full_list[0])):
-        total_dict = {'"id"': full_list[0][int(value)], header[1]: full_list[1][int(value)],
-                      header[2]: full_list[2][int(value)], header[3]: full_list[3][int(value)],
-                      header[4]: full_list[4][int(value)], header[5]: full_list[5][int(value)],
-                      header[6]: full_list[6][int(value)], header[7]: full_list[7][int(value)],
-                      header[8]: full_list[8][int(value)]}
-        value = value + 1
-        total_list_dict.append(total_dict)
-        if value > len(full_list[0]):
-            break
-    return(total_list_dict), total_dict
-not_written = False
-total_list_dict, total_dict = dict()
-new_file_name = 'new_prueba'
-while not not_written:
-    new_file = open(new_file_name, "w")
-    i = 0
-    for i in range(0, len(total_list_dict)):
-        copy = new_file.write(str(total_list_dict[i]) + "\n")
-        i = i + 1
-        if i > len(total_list_dict):
-            break
-    if copy > len(total_list_dict):
-        not_written = True
-        break
+
 
 
 #print((total_list_dict[0]['"id"']))
 #(total_list_dict[0].update({'"' + parameter + '"':str(common_value)}))
 #print(total_list_dict)
 
+def data():
+    full_list = []
+    with open("melanoma.csv", "r") as f:
+        header = next(f)
+        header = header.replace("\n", "").replace('""', '').split(",")
+        for i in range(0, len(header)):
+            full_list.append([])
+        for line in f:
+            element = line.replace("\n", "").replace('""', '').split(",")
+            for i in range(0, len(header)):
+                full_list[i].append(element[i])
+        f.close()
+    return header, full_list
 
+def option_2(patient_number):
+    i = 0
+    values = []
+    finished =False
+    while not finished:
+        try:
+            value = full_list[i][patient_number]
+            values.append(value)
+            i = i+1
+        except IndexError:
+            finished = True
+    return values
 
-
-
-
-
-
-
-
+patient_number = int(1) #int(input('Select a patient id:'))
+print(option_2(patient_number))
 
 
 
