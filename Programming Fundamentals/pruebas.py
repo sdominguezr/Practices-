@@ -53,7 +53,15 @@ def option_2(patient_number):
             i = i+1
         except IndexError:
             finished = True
-    return values
+    information =("Data for patient: " + str(values[0]) + "\n"
+                  "Value for time: " + str(values[1]) + "\n"
+                  "Value for status: " + str(values[2]) + "\n"
+                  "Value for sex: " + str(values[3]) + "\n"
+                  'Value for age: ' + str(values[5]) + "\n" +
+                  'Value for year: ' + str(values[6]) + "\n" +
+                  'Value for thickness: ' + str(values[7]) + "\n" +
+                  'Value for ulcer: ' + str(values[8]) + "\n" )
+    return information
 
 patient_number = int(1) #int(input('Select a patient id:'))
 print(option_2(patient_number))

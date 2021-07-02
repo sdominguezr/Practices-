@@ -1,3 +1,4 @@
+import statistics
 def menu():
     configuration = (
                 "Choose an option: " + " \n " + "1- Get the Stadistics." + " \n " + "2- Find Patient." + " \n " + "3- Number of People who Die because of Melanoma." + " \n " + "4- Clone the File." + " \n " + "5- Exit.")
@@ -23,9 +24,6 @@ def data():
 
 
 header, full_list = data()
-# print (data())
-for i in range(0, len(header)):
-    print(header[i])
 time_list = full_list[1]
 status_list = full_list[2]
 sex_list = full_list[3]
@@ -34,9 +32,6 @@ year_list = full_list[5]
 thickness_list = full_list[6]
 ulcer_list = full_list[7]
 entire_list = full_list[0:]
-import statistics
-
-
 def option_1():
     high = 0
     low = 10 ** 5
@@ -143,22 +138,26 @@ def option_1():
     return high, low, average, med, have, dont, fem, male
 
 
-def option_2():
-    try:
-        line_patient = (input("Select a patient id: "))
-        # if line_patient.isdigit():
-        line_patient = int(line_patient)
-        time = time_list[line_patient]
-        status = status_list[line_patient]
-        sex = sex_list[line_patient]
-        age = age_list[line_patient]
-        year = year_list[line_patient]
-        thick = thickness_list[line_patient]
-        ulcer = ulcer_list[line_patient]
-    except ValueError:
-        None
-
-    return time, status, sex, age, year, thick, ulcer, line_patient
+def option_2(patient_number):
+    i = 0
+    values = []
+    finished =False
+    while not finished:
+        try:
+            value = full_list[i][patient_number]
+            values.append(value)
+            i = i+1
+        except IndexError:
+            finished = True
+    information =("Data for patient: " + str(values[0]) + "\n"
+                  "Value for time: " + str(values[1]) + "\n"
+                  "Value for status: " + str(values[2]) + "\n"
+                  "Value for sex: " + str(values[3]) + "\n"
+                  'Value for age: ' + str(values[5]) + "\n" +
+                  'Value for year: ' + str(values[6]) + "\n" +
+                  'Value for thickness: ' + str(values[7]) + "\n" +
+                  'Value for ulcer: ' + str(values[8]) + "\n" )
+    return information
 
 
 def option_3():
@@ -174,7 +173,10 @@ def option_3():
     for element in status_list:
         if element == "3":
             element_dd = int(element_dd) + 1
-    return element_dm, element_l, element_dd
+    information = ("Patients who have died from melanoma: " + str(
+        element_dm) + "\n" + "Patinents who were still alive: " + str(
+        element_l) + "\n" + "Patients who have died from other reasons: " + str(element_dd))
+    return information
 
 
 def option_4():
@@ -225,21 +227,9 @@ with open("melanoma.csv", "r") as f:
                                 print("The patiens who are males are: ", male)
 
                 elif option == "2":
-                    time, status, sex, age, year, thick, ulcer, line_patient = option_2()
-                    print("Data for patient: " + str(line_patient))
-                    print("The value for time is: " + str(time))
-                    print("The value for status is: " + str(status))
-                    print("The value for sex is: ", (sex))
-                    print("The value for age is: ", (age))
-                    print("The value for year is: ", (year))
-                    print("The value for thickness is : ", (thick))
-                    print("The value for ulcer is: ", ulcer)
+                    print(option_2())
                 elif option == "3":
-                    element_dm, element_l, element_dd = option_3()
-                    print("Patients who have died from melanoma: " + str(
-                        element_dm) + "\n" + "Patinents who were still alive: " + str(
-                        element_l) + "\n" + "Patients who have died from other reasons: " + str(element_dd))
-
+                    print(option_3())
                 elif option == "4":
                     option_4()
                     print("Done")
