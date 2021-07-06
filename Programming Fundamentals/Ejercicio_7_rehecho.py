@@ -144,7 +144,7 @@ def option_2(patient_number):
     finished =False
     while not finished:
         try:
-            value = full_list[i][patient_number]
+            value = full_list[i][patient_number - 1]
             values.append(value)
             i = i+1
         except IndexError:
